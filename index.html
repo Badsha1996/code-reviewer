@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Code Review Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <div class="logo">
+          <h1>Code <span>Review</span> Assistant</h1>
+        </div>
+      </header>
+
+      <!-- API Key -->
+      <div style="margin-bottom: 1rem">
+        <div class="api-key-wrap">
+          <input
+            type="password"
+            id="api-key"
+            placeholder="Enter your Anthropic API key (sk-ant-...)"
+            autocomplete="off"
+          />
+          <button
+            class="eye-btn"
+            onclick="toggleKey()"
+            aria-label="Toggle key visibility"
+          >
+            <i class="ti ti-eye" id="eye-icon"></i>
+          </button>
+        </div>
+        <p class="key-hint">
+          Your key never leaves your browser. Get one free at
+          <a href="https://console.anthropic.com" target="_blank"
+            >console.anthropic.com</a
+          >
+        </p>
+      </div>
+
+      <!-- Code editor -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Code Input</span>
+          <div class="lang-select">
+            <select id="lang-sel">
+              <option value="auto">Auto-detect</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="TypeScript">TypeScript</option>
+              <option value="Python">Python</option>
+              <option value="React (JSX)">React (JSX)</option>
+              <option value="Java">Java</option>
+              <option value="Go">Go</option>
+              <option value="C++">C++</option>
+              <option value="Rust">Rust</option>
+              <option value="SQL">SQL</option>
+            </select>
+          </div>
+        </div>
+        <textarea
+          id="code-input"
+          spellcheck="false"
+          placeholder="Paste your code here…"
+        ></textarea>
+        <div class="samples-row">
+          <span class="samples-label">Samples:</span>
+          <button class="chip" onclick="loadSample('js')">JavaScript</button>
+          <button class="chip" onclick="loadSample('python')">Python</button>
+          <button class="chip" onclick="loadSample('react')">React</button>
+          <button class="chip" onclick="loadSample('ts')">TypeScript</button>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-primary" id="review-btn" onclick="runReview()">
+          Review Code
+        </button>
+      </div>
+
+      <div id="error-area"></div>
+      <div id="results-area"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
